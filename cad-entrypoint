@@ -1,0 +1,13 @@
+#!/bin/sh
+# Seeds a fresh HOME so KiCad and SKiDL find the stock libraries, then runs the
+# given command. Pods start with an empty HOME (an emptyDir); without the
+# global library tables KiCad has no footprints and SKiDL no symbols.
+set -eu
+
+cfg="${HOME}/.config/kicad/10.0"
+mkdir -p "$cfg"
+for table in sym-lib-table fp-lib-table; do
+  [ -e "$cfg/$table" ] || cp /usr/share/kicad/template/"$table" "$cfg/$table"
+done
+
+exec "$@"

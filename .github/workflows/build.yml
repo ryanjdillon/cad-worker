@@ -1,0 +1,22 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - Dockerfile
+      - requirements.txt
+      - .github/workflows/build.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  image:
+    # TODO: switch to @v1 once the workflows repository has a v1 tag. Pinning a
+    # branch means a change there reaches this build without review.
+    uses: ryanjdillon/workflows/.github/workflows/docker-build-push.yml@main
+    with:
+      image: ryanjdillon/cad-worker
