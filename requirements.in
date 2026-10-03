@@ -1,0 +1,16 @@
+# Direct dependencies of the /opt/cad venv. Compiled with hashes into
+# requirements.lock (see README); edit this file, never the lock.
+build123d==0.11.1
+build123d-mcp[http]==0.3.90
+skidl==2.2.1
+# KiCAD-MCP-Server's Python side (its requirements.txt, lower bounds only).
+kicad-python>=0.5.0
+sexpdata>=1.0.2
+kicad-skip>=0.1.0
+Pillow>=9.0.0
+pymupdf>=1.24
+cairosvg>=2.7.0
+colorlog>=6.7.0
+pydantic>=2.5.0
+requests>=2.32.5
+python-dotenv>=1.0.0

@@ -1,0 +1,3 @@
+# The /opt/mcp-proxy venv: mcp-proxy 0.12.0 imports mcp 1.x internals.
+mcp-proxy==0.12.0
+mcp>=1.17,<2
