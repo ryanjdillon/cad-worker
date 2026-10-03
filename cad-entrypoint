@@ -4,10 +4,14 @@
 # global library tables KiCad has no footprints and SKiDL no symbols.
 set -eu
 
-cfg="${HOME}/.config/kicad/10.0"
-mkdir -p "$cfg"
+cfg="${HOME}/.config/kicad"
+mkdir -p "$cfg/10.0"
 for table in sym-lib-table fp-lib-table; do
-  [ -e "$cfg/$table" ] || cp /usr/share/kicad/template/"$table" "$cfg/$table"
+  [ -e "$cfg/10.0/$table" ] || cp /usr/share/kicad/template/"$table" "$cfg/10.0/$table"
 done
+
+# SKiDL 2.2.1's KICAD9 backend reads its footprint table from the 9.0 config
+# directory; point it at the 10.0 tables.
+[ -e "$cfg/9.0" ] || ln -s 10.0 "$cfg/9.0"
 
 exec "$@"
