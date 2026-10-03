@@ -5,7 +5,9 @@ on:
     branches: [main]
     paths:
       - Dockerfile
-      - requirements.txt
+      - requirements.lock
+      - mcp-proxy.lock
+      - cad-entrypoint
       - .github/workflows/build.yml
   workflow_dispatch:
 
@@ -15,8 +17,8 @@ permissions:
 
 jobs:
   image:
-    # TODO: switch to @v1 once the workflows repository has a v1 tag. Pinning a
-    # branch means a change there reaches this build without review.
-    uses: ryanjdillon/workflows/.github/workflows/docker-build-push.yml@main
+    # Pinned by commit: a change in the workflows repository reaches this build
+    # only through a reviewed bump here.
+    uses: ryanjdillon/workflows/.github/workflows/docker-build-push.yml@f2e073fcc391380aaed22c2df70890d3d1494faa
     with:
       image: ryanjdillon/cad-worker
